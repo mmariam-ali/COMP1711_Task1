@@ -41,8 +41,64 @@ void tokeniseRecord(const char *input, const char *delimiter,
 
 }
 
+
+
 // Complete the main function
 int main() {
+
+    int count = 0;
+    char first_line;
+    
+    /*read the csv file.  sort out buffer? */
+    FILE *file = fopen("FitnessData_2023.csv", "r");
+        if (file ==NULL) {
+            perror("File is empty ");
+            return 1;
+        }
+    
+        int buffer_size = 100;
+        char buffer[buffer_size];
+        while (fgets(buffer, buffer_size, file) != NULL) {
+            printf( "%s", buffer);
+            count++;
+        }
+
+
+        
+
+
+
+        //number of records in file DONE
+        printf("Number of records in file: %d", count);
+
+// typedef struct {
+// 	char date[11];
+// 	char time[6];
+// 	int steps;
+// } FITNESS_DATA;
+
+
+    /*store it in a suitable sized and structured array
+    and type def data structure*/
+
+    //
+
+    first_line = fscanf(file, "\n", buffer);
+    https://stackoverflow.com/questions/8917550/difference-between-fgets-and-fscanf
+    printf("%s", first_line);
+    //printf("%s", tokeniseRecord());
+
+
+
+
+
+
+    fclose(file);
+
+
+
+
+    return 0;
 
 
 }
