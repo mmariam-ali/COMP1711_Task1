@@ -46,51 +46,85 @@ void tokeniseRecord(const char *input, const char *delimiter,
 // Complete the main function
 int main() {
 
-    int line_count = 0;
-    char first_line;
+    int line_count = 0, i=0;
+    int buffer_size = 256;
+    char buffer[buffer_size];
+
+
     
     /*read the csv file.  sort out buffer? */
     FILE *file = fopen("FitnessData_2023.csv", "r");
-        if (file ==NULL) {
-            perror("File is empty ");
+        if (file == NULL) {
+            perror("File is empty\n");
             return 1;
-        }
-    
-        int buffer_size = 100;
-        char buffer[buffer_size];
-        while (fgets(buffer, buffer_size, file) != NULL) {
-            //printf( "%s", buffer);
-            FITNESS_DATA fitness_data [] = {
-                strcpy(fitness_data
-
         };
+    
+        while (fgets(buffer, buffer_size, file) != NULL) {
+            //buffer_array[b]= buffer;
+            //printf("%s", buffer_array[b]);
+
+            //strcpy(fitness_data, buffer);
+            //printf( "%s", buffer);
+            
+            // strcpy(fitness_data[i], buffer);
+        
             line_count++;
-        }
+    
+        };
+
+        char buffer_array[line_count], b=0;
+
+        // while (fgets(buffer, buffer_size, file) != NULL) {
+        //     buffer_array[b]= itoa(buffer);
+        //     b++;
+        // }
+
+        // for (b=0; b <line_count; b++) {
+        //     printf("%s", itoa(buffer_array[b]));
+        // }
+    
 
         //number of records in file DONE
         printf("Number of records in file: %d", line_count);
         printf("\n");
 
-
-// typedef struct {
-// 	char date[11];
-// 	char time[6];
-// 	int steps;
-// } FITNESS_DATA;
+    FITNESS_DATA fitness_data[line_count];
 
 
- while (fgets(buffer, buffer_size, file) != NULL) {
-            //printf( "%s", buffer);
-        }
-        FITNESS_DATA fitness_data [] = {
-            {"%s", buffer}
-            // {"2023-09-01","07:30",300},
-            // {"2023-09-01","07:45",400},
-            // {"2023-09-01","08:00",600},
 
-        };
 
-        for (int i= 0; i <3; i++) {
+//  while (fgets(buffer, buffer_size, file) != NULL) {
+//             //printf( "%s", buffer);
+
+            //
+//         }
+
+
+
+        // FITNESS_DATA fitness_data [] = {
+        //     // {"%s", buffer}
+        //     {"2023-09-01","07:30",300},
+        //     {"2023-09-01","07:45",400},
+        //     {"2023-09-01","08:00",600},
+        // };
+
+        
+        
+
+
+
+
+
+        
+        // for ( int i =0; i < line_count; i++) {
+        //         FITNESS_DATA fitness_data[] = {
+        //             {"%s", buffer},
+        //         //{"%s,%s,%d", fitness_data[i].date, fitness_data[i].time, fitness_data[i].steps},
+        // };
+        // }
+        
+
+        for (i= 0; i <3; i++) {
             printf("%s/%s/%d", fitness_data[i].date, fitness_data[i].time, fitness_data[i].steps );
             printf("\n");
         }
@@ -98,22 +132,12 @@ int main() {
     
     
 
-    //first_line = fscanf(file, "\n", buffer);
-    //https://stackoverflow.com/questions/8917550/difference-between-fgets-and-fscanf
-    //printf("%s", first_line);
-    //printf("%s", tokeniseRecord());
-
-
-
-
+    
 
 
     fclose(file);
-
-
-
-
     return 0;
 
-
 }
+
+    
