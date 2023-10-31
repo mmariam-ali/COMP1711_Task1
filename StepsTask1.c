@@ -3,6 +3,8 @@
 #include <string.h>
 
 // Define an appropriate struct
+typedef unsigned long long int buffer_array;
+
 typedef struct {
 	char date[11];
 	char time[6];
@@ -52,6 +54,7 @@ int main() {
 
 
     
+
     /*read the csv file.  sort out buffer? */
     FILE *file = fopen("FitnessData_2023.csv", "r");
         if (file == NULL) {
@@ -59,20 +62,32 @@ int main() {
             return 1;
         };
     
-        while (fgets(buffer, buffer_size, file) != NULL) {
+        while (fgets(buffer, buffer_size, file) != NULL) {          
+            i =0;
             //buffer_array[b]= buffer;
             //printf("%s", buffer_array[b]);
 
             //strcpy(fitness_data, buffer);
-            //printf( "%s", buffer);
-            
+            printf( "%s", buffer);
+            //printf("%s %s %d", buffer.date, buffer.)
+            printf("break");
             // strcpy(fitness_data[i], buffer);
         
             line_count++;
     
         };
 
-        char buffer_array[line_count], b=0;
+    FITNESS_DATA fitness_data[line_count];
+
+        while (fgets(buffer, buffer_size, file)!= NULL) {
+            char *date [line_count]= {"%s", buffer.date};
+            for (i =0; i< line_count +1; i++ ) {
+            strcpy(fitness_data[i].date, date);
+            strcpy(fitness_data[i].time, );
+            strcpy(fitness_data[i].steps, );
+            }
+            i++;
+        };
 
         // while (fgets(buffer, buffer_size, file) != NULL) {
         //     buffer_array[b]= itoa(buffer);
@@ -87,8 +102,6 @@ int main() {
         //number of records in file DONE
         printf("Number of records in file: %d", line_count);
         printf("\n");
-
-    FITNESS_DATA fitness_data[line_count];
 
 
 
@@ -124,10 +137,10 @@ int main() {
         // }
         
 
-        for (i= 0; i <3; i++) {
-            printf("%s/%s/%d", fitness_data[i].date, fitness_data[i].time, fitness_data[i].steps );
-            printf("\n");
-        }
+        // for (i= 0; i <3; i++) {
+        //     printf("%s/%s/%d", fitness_data[i].date, fitness_data[i].time, fitness_data[i].steps );
+        //     printf("\n");
+        // }
 
     
     
