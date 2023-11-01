@@ -49,7 +49,7 @@ int main() {
     int line_count = 0, i=0, records =0;
     int buffer_size = 256;
     char buffer [buffer_size];
-    char date, time, steps;
+    char date, time, steps, line, delimiter = ',';
     
 
 
@@ -60,6 +60,7 @@ int main() {
             return 1;
         };
     
+        //counts and prints number of lines in file
         while (fgets(buffer, buffer_size, file) != NULL) {       
             line_count++;
         };
@@ -68,18 +69,24 @@ int main() {
 count lines 
 populate  */
 
+    //create struct with length of line file count
     FITNESS_DATA fitness_data[line_count];
-
+    
         while (fgets(buffer, buffer_size, file) != NULL) {
+            //for every 
             for (records =0; records < line_count+1; records ++) {
             tokeniseRecord(buffer, ',', &date, &time, &steps);
-            fscanf(file, "%s %s %d",fitness_data[records].date,
+ 
+            // tokeniseRecord(buffer, ',', &date, &time, &steps);
+            //tokeniseRecord(buffer, ',', &date, &time, &steps);
+
+            fscanf(buffer, "%s %s %d",fitness_data[records].date,
                                 fitness_data[records].time,
                                 &fitness_data[records].steps); 
-            records ++;
+        
     }};
 
-         //printf("\n%d records read.\n",records);
+         printf("\n%d records read.\n",records);
 
         for (i =0; i<3; i++ ) {
                 printf ("%s/%s/%d\n", fitness_data[i].date,
