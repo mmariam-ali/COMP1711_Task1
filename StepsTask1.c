@@ -3,12 +3,11 @@
 #include <string.h>
 
 // Define an appropriate struct
-typedef unsigned long long int buffer_array;
 
 typedef struct {
 	char date[11];
 	char time[6];
-	int steps;
+	char steps[10];
 } FITNESS_DATA;
 
 // Define any additional variables here
@@ -46,111 +45,40 @@ void tokeniseRecord(const char *input, const char *delimiter,
 
 
 // Complete the main function
-int main() {
 
-    int line_count = 0, i=0;
-    int buffer_size = 256;
+int main() {
+    char record, date[11], time[6], steps[10];
+    int intsteps, line_count=0, i;
+    int buffer_size=256;
     char buffer[buffer_size];
 
-
-    
-
-    /*read the csv file.  sort out buffer? */
-    FILE *file = fopen("FitnessData_2023.csv", "r");
-        if (file == NULL) {
-            perror("File is empty\n");
+    FILE *file= fopen("FitnessData_2023.csv", "r");
+        if (file ==NULL) {
+            perror("Error opening file\n");
             return 1;
-        };
-    
-        while (fgets(buffer, buffer_size, file) != NULL) {          
-            i =0;
-            //buffer_array[b]= buffer;
-            //printf("%s", buffer_array[b]);
+        }
 
-            //strcpy(fitness_data, buffer);
-            printf( "%s", buffer);
-            //printf("%s %s %d", buffer.date, buffer.)
-            printf("break");
-            // strcpy(fitness_data[i], buffer);
-        
-            line_count++;
-    
-        };
-
-    FITNESS_DATA fitness_data[line_count];
+    FITNESS_DATA fitness_data[9999];
 
         while (fgets(buffer, buffer_size, file)!= NULL) {
-            char *date [line_count]= {"%s", buffer.date};
-            for (i =0; i< line_count +1; i++ ) {
+            line_count++;
+
+            tokeniseRecord(buffer, ",", date, time, steps);
             strcpy(fitness_data[i].date, date);
-            strcpy(fitness_data[i].time, );
-            strcpy(fitness_data[i].steps, );
-            }
+            strcpy(fitness_data[i].time, time);
+            strcpy(fitness_data[i].steps, steps);
             i++;
-        };
-
-        // while (fgets(buffer, buffer_size, file) != NULL) {
-        //     buffer_array[b]= itoa(buffer);
-        //     b++;
-        // }
-
-        // for (b=0; b <line_count; b++) {
-        //     printf("%s", itoa(buffer_array[b]));
-        // }
-    
-
-        //number of records in file DONE
-        printf("Number of records in file: %d", line_count);
-        printf("\n");
-
-
-
-
-//  while (fgets(buffer, buffer_size, file) != NULL) {
-//             //printf( "%s", buffer);
-
-            //
-//         }
-
-
-
-        // FITNESS_DATA fitness_data [] = {
-        //     // {"%s", buffer}
-        //     {"2023-09-01","07:30",300},
-        //     {"2023-09-01","07:45",400},
-        //     {"2023-09-01","08:00",600},
-        // };
-
+        }
         
-        
+    printf("Number of records in file: %d\n", line_count);
 
-
-
-
-
-        
-        // for ( int i =0; i < line_count; i++) {
-        //         FITNESS_DATA fitness_data[] = {
-        //             {"%s", buffer},
-        //         //{"%s,%s,%d", fitness_data[i].date, fitness_data[i].time, fitness_data[i].steps},
-        // };
-        // }
-        
-
-        // for (i= 0; i <3; i++) {
-        //     printf("%s/%s/%d", fitness_data[i].date, fitness_data[i].time, fitness_data[i].steps );
-        //     printf("\n");
-        // }
-
-    
-    
-
-    
-
+        for (int i =0; i <3; i++) {
+            printf("%s/%s/%d\n", fitness_data[i].date,
+                         fitness_data[i].time,
+                         atoi(fitness_data[i].steps));
+                }
 
     fclose(file);
     return 0;
-
 }
-
     

@@ -28,16 +28,20 @@ void tokeniseRecord(const char *input, const char *delimiter,
 }
 
  typedef struct {
-    char record[21] ;
+    //char record[21] ;
     char date[11];
     char time[6];
     char steps[10];  
 } FITNESS_DATA;
 
 
+
+
+
+
 int main() {
-    char record[21], date[11], time[6], steps[10];
-    int stepsint, line_count=0;
+    char record, date[11], time[6], steps[10];
+    int intsteps, line_count=0, i;
     int buffer_size=256;
     char buffer[buffer_size];
 
@@ -47,31 +51,29 @@ int main() {
             return 1;
         }
 
-        while(fgets(buffer, buffer_size, file)!= NULL) {
-            //printf("%s\n", buffer);
+    FITNESS_DATA fitness_data[9999];
+
+        while (fgets(buffer, buffer_size, file)!= NULL) {
+            //printf("%s", buffer);
             line_count++;
-        }
-    printf("Number of records in file: %d", line_count);
 
-    FITNESS_DATA fitness_data[line_count]; //declaring struct array and length
+            tokeniseRecord(buffer, ",", date, time, steps);
+            //printf("%s/%s/%s\n", date, time, steps);
 
-    while (fgets(buffer, buffer_size, file) != NULL) {
-        int i =0;//for (int i=0; i <line_count; i++) { //for every line in csv file
-        char record = buffer; //assigning buffer value to char
-        printf("%s\n", record);
-        //fitness_data[i] = {"%s", record};
-        printf("%s\n", fitness_data[i]);
-        tokeniseRecord(record, ",", date, time, steps); //splitting into date, time and steps
-        i++;
-        //fitness_data[i] = "%s %s %s", date, time, steps;
+            strcpy(fitness_data[i].date, date);
+            strcpy(fitness_data[i].time, time);
+            //intsteps= atoi(steps);
+            strcpy(fitness_data[i].steps, steps);
+            i++;
+            }
+        
+    printf("Number of records in file: %d\n", line_count);
+
+        for (int i =0; i <3; i++) {
+            printf("%s/%s/%d\n", fitness_data[i].date,
+                         fitness_data[i].time,
+                         atoi(fitness_data[i].steps));
     }
-
-
-    // for (int i=0; i < count; i++) {
-    // //stepsint = atoi(steps);
-    // printf("\n%s/%s/%s\n", date, time, steps);
-    // };
-
 
     fclose(file);
     return 0;
