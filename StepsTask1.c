@@ -72,11 +72,12 @@ int main() {
         
     printf("Number of records in file: %d\n", line_count);
 
+
         for (int i =0; i <3; i++) {
             printf("%s/%s/%d\n", fitness_data[i].date,
                          fitness_data[i].time,
                          atoi(fitness_data[i].steps));
-                }
+                            }
 
     fclose(file);
     return 0;
