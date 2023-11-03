@@ -1,3 +1,5 @@
+//didn't end up using this
+
 /*******************************************************************************
 *
 * Program: Read CSV File Data To An Array Of Structs
